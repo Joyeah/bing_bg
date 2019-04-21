@@ -19,4 +19,12 @@ or
 
 > run.bat
 
-#### 
+#### Dependence
+
+puppeteer-core.js
+
+bunyan.js
+
+moment.js
+
+config.js

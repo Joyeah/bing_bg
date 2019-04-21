@@ -1,0 +1,8 @@
+yarn init -y
+
+yarn add puppeteer-core
+yarn add bunyan
+# yarn add babel-register babel-preset-env --dev
+yarn add moment
+yarn add config
+yarn add jest --dev
