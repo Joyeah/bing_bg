@@ -8,6 +8,7 @@ var path = require('path');
 // var configFile = path.resolve('./config', process.env.NODE_ENV + '.js');
 // var config = require(configFile);
 var config = require('config');
+console.log(config);
 
 util.log.info('Begin run Bing_BG app..');
 util.log.info('chrome path: ', config.get('executablePath'));
@@ -18,7 +19,7 @@ util.log.info('保存路径:', config.get('imgdir'));
     const browser = await puppeteer.launch({
         executablePath: config.get('executablePath') ||'D:/_JRH/project/.local-chromium/win64-609904/chrome-win/chrome.exe',
         defaultViewport:{width:1920,height:1024},
-        headless:false,
+        headless:config.get('headless') || true,
         slowMo:300
     });
     const page = await browser.newPage();
@@ -32,6 +33,7 @@ util.log.info('保存路径:', config.get('imgdir'));
     await downloadImage(page);
  
     await browser.close();
+    util.log.info('run ended.')
 })();
 
 /**
@@ -100,7 +102,7 @@ async function saveImage(imgurl){
         }
     }
     imgpath = path.resolve(config.get('imgdir'), imgpath || moment().format('[bing_bg_]YYYYMMDDHHmmSS[.jpg]'));
-    util.log.info('Request and Save:' + imgpath);
+    util.log.warn('Request and Save:' + imgpath);
     return new Promise((resolve, reject) => {
         https.get(imgurl, (res) => {
             let imgData = "";
