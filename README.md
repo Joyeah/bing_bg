@@ -11,6 +11,11 @@ This tool will download all cn.bing.com homepage backgound image you can.
 >
 > yarn install 
 
+#### Configuration
+
+1. reset `executablePath` to your chrome path or set it empty
+2. set `imgdir` to your image dir path 
+
 #### Usage
 
 > yarn run start
