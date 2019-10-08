@@ -13,6 +13,14 @@ console.log(config);
 util.log.info('Begin run Bing_BG app..');
 util.log.info('chrome path: ', config.get('executablePath'));
 util.log.info('保存路径:', config.get('imgdir'));
+util.log.info('argv: ', process.argv);
+
+//判断参数：--all
+argv = process.argv.splice(2);
+const __all = argv.filter((val, idx) => {
+    return val == '--all'
+});
+
 
 (async () => {
     util.log.info(config.get('executablePath'));
@@ -55,9 +63,21 @@ async function downloadImage(page){
 
     let imgurl = bgimg.substring(bgimg.indexOf('(') + 1, bgimg.indexOf(')'));
     imgurl = imgurl.replace(/"/g, '');
-    let done = saveImage(imgurl).catch(err=>{
+    //记录图片url
+    fs.appendFile('imgurls.log', imgurl + '\n', err=>{
+        if(err){
+            util.log.error(err)
+        }else{
+            util.log.info(`imgurl: ${imgurl}`)
+        }
+    })
+    let done = await saveImage(imgurl).catch(err=>{
         util.log.error(err);
     });
+
+    if(__all.length == 0){
+        return true;
+    }
 
     await page.waitFor(1000);
     let exist = await backward(page);
