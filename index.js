@@ -23,13 +23,17 @@ const __all = argv.filter((val, idx) => {
 
 
 (async () => {
-    util.log.info(config.get('executablePath'));
-    const browser = await puppeteer.launch({
-        executablePath: config.get('executablePath') ||'D:/_JRH/project/.local-chromium/win64-609904/chrome-win/chrome.exe',
-        defaultViewport:{width:1920,height:1024},
-        headless:config.get('headless') || true,
-        slowMo:300
-    });
+    let executablePath = config.get('executablePath') 
+    util.log.info(executablePath);
+    let options = {
+        defaultViewport: { width: 1920, height: 1024 },
+        headless: config.get('headless') || true,
+        slowMo: 300
+    }
+    if(executablePath){
+        options.executablePath = executablePath;
+    }
+    const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
     page.on('console', msg => {
         for (let i = 0; i < msg.args().length; ++i)

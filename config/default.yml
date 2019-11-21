@@ -1,3 +1,4 @@
+# "executablePath": "I:/_JRH/project/.local-chromium/win64-609904/chrome-win/chrome.exe" # chrome路径
 "executablePath": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" # chrome路径
-"imgdir": "D:/My Documents/MyPictures/wallpaper/"
-headless: true
+"imgdir": "I:/My Documents/MyPictures/wallpaper/"
+headless: false
