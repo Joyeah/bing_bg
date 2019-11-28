@@ -27,8 +27,11 @@ const __all = argv.filter((val, idx) => {
     util.log.info(executablePath);
     let options = {
         defaultViewport: { width: 1920, height: 1024 },
-        headless: config.get('headless') || true,
         slowMo: 300
+    }
+    let headless = config.get('headless');
+    if(headless == false){
+        options.headless = headless;
     }
     if(executablePath){
         options.executablePath = executablePath;

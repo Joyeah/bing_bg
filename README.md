@@ -1,7 +1,7 @@
 # bing_bg
-This is a cn.bing.com background image download tool.
+This is the background image download tool for cn.bing.com.
 
-This tool will download all cn.bing.com homepage backgound image you can.
+This tool will download all background images of cn.bing.com homepage.You can run it every day  or every few days.
 
 #### Install
 
@@ -22,7 +22,11 @@ This tool will download all cn.bing.com homepage backgound image you can.
 
 or 
 
-> run.bat
+> run.bat  #on win
+
+or 
+
+> run_all.bat  #on win
 
 #### Dependence
 
